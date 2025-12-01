@@ -26,6 +26,30 @@ public class Day01 {
         return prefix*value;
     }
 
-
-
+    public long day01B(){
+        try (Stream<String> lines = Files.lines(Paths.get("src/days/day01/day01a.txt"))) {
+            var intList = lines.map(this::mapStringToShift).toList();
+            int currVal = 50;
+            int count = 0;
+            for (int i : intList) {
+                int oldVal = currVal;
+                currVal=currVal+i;
+                if(currVal<=0){
+                    count+=Math.abs(Math.floorDiv(currVal,100));
+                    if(currVal%100==0){
+                        count++;
+                    }
+                    if(oldVal==0){
+                        count--;
+                    }
+                }else{
+                    count+=Math.floorDiv(currVal,100);
+                }
+                currVal= (((currVal%100))+100)%100;
+            }
+            return count;
+        } catch (IOException e) {
+            return 0;
+        }
+    }
 }
