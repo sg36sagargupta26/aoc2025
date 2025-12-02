@@ -1,7 +1,10 @@
-import days.day01.Day01;
+import days.day02.Day02;
 
 void main() {
-    Day01 day01 = new Day01();
-    IO.println(day01.day01A());
-    IO.println(day01.day01B());
+    Day02 day02 = new Day02();
+    Instant start = Instant.now();
+    IO.println(day02.day02A());
+    Instant end = Instant.now();
+    Duration duration = Duration.between(start,end);
+    IO.println(duration.toNanos());
 }

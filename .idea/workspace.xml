@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b41104ad-c3bf-44ed-9609-0be3ebb97c55" name="Changes" comment="Day01.java : doy01a">
+    <list default="true" id="b41104ad-c3bf-44ed-9609-0be3ebb97c55" name="Changes" comment="Day01.java : doy01b">
+      <change afterPath="$PROJECT_DIR$/src/days/day02/Day02.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/days/day02/day02a.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/days/day01/Day01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/days/day01/Day01.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +56,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/sagargupta/Downloads/aoc2025/src/days/day02",
     "onboarding.tips.debug.path": "/Users/sagargupta/Downloads/aoc2025/src/Main.java",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -63,6 +65,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/days/day02" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/days/day01" />
     </key>
@@ -95,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764606967318</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Day01.java : doy01b">
+      <option name="closed" value="true" />
+      <created>1764614805243</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764614805243</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,20 +124,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Day01.java : doy01a" />
-    <option name="LAST_COMMIT_MESSAGE" value="Day01.java : doy01a" />
+    <MESSAGE value="Day01.java : doy01b" />
+    <option name="LAST_COMMIT_MESSAGE" value="Day01.java : doy01b" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/days/day01/Day01.java</url>
-          <line>31</line>
+          <line>30</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/days/day01/Day01.java</url>
-          <line>33</line>
+          <line>32</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/days/day02/Day02.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
