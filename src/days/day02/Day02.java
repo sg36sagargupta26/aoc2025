@@ -44,27 +44,28 @@ public class Day02 {
     }
 
     private BigInteger countMultipleRepeats(Pair pair) {
-        Set<BigInteger> set = new HashSet<>();
         int length = pair.start().length;
         return IntStream.rangeClosed(1,length-1)
+                .parallel()
                 .filter(i->length%i==0)
-                .mapToObj(i->countGenericRepeats(pair,i,set))
+                .mapToObj(i->countGenericRepeats(pair,i))
+                .flatMap(Collection::parallelStream)
+                .distinct()
                 .reduce(BigInteger::add)
                 .orElse(BigInteger.ZERO);
     }
 
-    private BigInteger countGenericRepeats(Pair pair, int i, Set<BigInteger> set) {
+    private List<BigInteger> countGenericRepeats(Pair pair, int i) {
         int length = pair.start().length;
-        BigInteger count =BigInteger.valueOf(0);
+        List<BigInteger> count = new ArrayList<>();
         BigInteger start = new BigInteger(String.valueOf(pair.start()));
         BigInteger end = new BigInteger(String.valueOf(pair.end()));
         BigInteger entry = new BigInteger(String.valueOf(Arrays.copyOfRange(pair.start(),0,i)));
         BigInteger number = generateActualNumber(entry,length/i);
         while (end.compareTo(number)>=0 ){
             entry = entry.add(BigInteger.ONE);
-            if(start.compareTo(number)<=0 && !set.contains(number)){
-                count = count.add(number);
-                set.add(number);
+            if(start.compareTo(number)<=0){
+                count.add(number);
             }
             number = generateActualNumber(entry,length/i);
         }
