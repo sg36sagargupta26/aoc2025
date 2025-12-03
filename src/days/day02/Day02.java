@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 record Pair(char [] start, char [] end ){}
 public class Day02 {
@@ -27,6 +25,50 @@ public class Day02 {
         } catch (IOException e) {
             return BigInteger.ZERO;
         }
+    }
+
+    public BigInteger day02B(){
+        try{
+            return Pattern.compile(",")
+                    .splitAsStream(Files.readString(Paths.get("src/days/day02/day02a.txt")))
+                    .parallel()
+                    .map(this::convertToPair)
+                    .map(this::pairSplit)
+                    .flatMap(Collection::parallelStream)
+                    .map(this::countMultipleRepeats)
+                    .reduce(BigInteger::add)
+                    .orElse(BigInteger.ZERO);
+        } catch (IOException e) {
+            return BigInteger.ZERO;
+        }
+    }
+
+    private BigInteger countMultipleRepeats(Pair pair) {
+        Set<BigInteger> set = new HashSet<>();
+        int length = pair.start().length;
+        return IntStream.rangeClosed(1,length-1)
+                .filter(i->length%i==0)
+                .mapToObj(i->countGenericRepeats(pair,i,set))
+                .reduce(BigInteger::add)
+                .orElse(BigInteger.ZERO);
+    }
+
+    private BigInteger countGenericRepeats(Pair pair, int i, Set<BigInteger> set) {
+        int length = pair.start().length;
+        BigInteger count =BigInteger.valueOf(0);
+        BigInteger start = new BigInteger(String.valueOf(pair.start()));
+        BigInteger end = new BigInteger(String.valueOf(pair.end()));
+        BigInteger entry = new BigInteger(String.valueOf(Arrays.copyOfRange(pair.start(),0,i)));
+        BigInteger number = generateActualNumber(entry,length/i);
+        while (end.compareTo(number)>=0 ){
+            entry = entry.add(BigInteger.ONE);
+            if(start.compareTo(number)<=0 && !set.contains(number)){
+                count = count.add(number);
+                set.add(number);
+            }
+            number = generateActualNumber(entry,length/i);
+        }
+        return count;
     }
 
     private BigInteger countRepeats(Pair pair) {
@@ -48,6 +90,10 @@ public class Day02 {
     private BigInteger generateActualNumber(BigInteger entry){
         String a = entry.toString();
         return new BigInteger(a + a);
+    }
+
+    private BigInteger generateActualNumber(BigInteger entry, int count){
+        return new BigInteger(String.valueOf(entry).repeat(count));
     }
 
     private boolean isEvenLength(Pair pair) {
