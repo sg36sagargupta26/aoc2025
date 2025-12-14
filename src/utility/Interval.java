@@ -25,4 +25,8 @@ public class Interval{
         String [] split = string.split("-");
         return new Interval(Long.parseLong(split[0]),Long.parseLong(split[1]));
     }
+
+    public long difference(){
+        return end - start + 1 ;
+    }
 }

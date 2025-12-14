@@ -21,6 +21,13 @@ public class Day05 {
         }
     }
 
+    public long day05b() {
+        return merge(getInputRange())
+                .stream()
+                .mapToLong(Interval::difference)
+                .sum();
+    }
+
     private List<Interval> getInputRange(){
         try(Stream<String> stringRanges = Files.lines(Path.of("src/days/day05/day05a.txt"))){
             return stringRanges.map(Interval::generateFromString).collect(Collectors.toCollection(ArrayList::new));
