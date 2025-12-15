@@ -5,6 +5,7 @@ import java.util.*;
 public class DisjointSet {
     private final int size;
     private final int [] parents;
+    private int noOfSets;
 
 
     public DisjointSet(int size) {
@@ -13,6 +14,7 @@ public class DisjointSet {
         for(int i=0;i<size;i++){
             parents[i]=i;
         }
+        this.noOfSets = size;
     }
     private int findParent(int i){
         if(i==parents[i]){
@@ -21,17 +23,19 @@ public class DisjointSet {
         return findParent(parents[i]);
     }
 
-    private boolean alreadyMerged(int i, int j){
+    public boolean alreadyMerged(int i, int j){
         return findParent(i)==findParent(j);
     }
 
     public void union(int i, int j){
-        if(alreadyMerged(i,j)){
-            return;
-        }
         int parentI = findParent(i);
         int parentJ = findParent(j);
         this.parents[parentI]=parentJ;
+        this.noOfSets--;
+    }
+
+    public boolean isFinalConnection(){
+        return noOfSets==1;
     }
 
     public long productOfThreeCircuits(){

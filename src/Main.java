@@ -3,7 +3,7 @@ import days.day08.Day08;
 void main() {
     Day08 day08 = new Day08();
     Instant start = Instant.now();
-    IO.println("result -> " + day08.day08a());
+    IO.println("result -> " + day08.day08b());
     Instant end = Instant.now();
     Duration duration = Duration.between(start,end);
     IO.println("time -> " +duration.toMillis());

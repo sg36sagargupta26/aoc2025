@@ -25,6 +25,26 @@ public class Day08 {
         return disjointSet.productOfThreeCircuits();
     }
 
+    public long day08b(){
+        var coordinates = getInput();
+        int len = coordinates.length;
+        var priorityQueue = getPairsSortedByDistance(coordinates);
+        var disjointSet = new DisjointSet(len);
+        while (!priorityQueue.isEmpty()){
+            var a = priorityQueue.remove().value();
+            if(disjointSet.alreadyMerged(a.key(),a.value())){
+                continue;
+            }
+            disjointSet.union(a.key(),a.value());
+            if(disjointSet.isFinalConnection()){
+                return coordinates[a.key()].x()*coordinates[a.value()].x();
+            }
+        }
+        return 0;
+    }
+
+
+
     private Coordinate [] getInput(){
         try(Stream<String> lines = Files.lines(Path.of("src/days/day08/day08.txt"))){
             return lines.map(Coordinate::parseCoordinate)
