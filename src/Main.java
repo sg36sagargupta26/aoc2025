@@ -1,9 +1,9 @@
-import days.day08.Day08;
+import days.day09.Day09;
 
 void main() {
-    Day08 day08 = new Day08();
+    Day09 day09 = new Day09();
     Instant start = Instant.now();
-    IO.println("result -> " + day08.day08b());
+    IO.println("result -> " + day09.day09a());
     Instant end = Instant.now();
     Duration duration = Duration.between(start,end);
     IO.println("time -> " +duration.toMillis());
