@@ -7,12 +7,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Day09 {
     public long day09a() {
-        var input = getInput().orElse(new ArrayList<>());
+        var input = getInput();
+        return getBiggestRectangle(input);
+    }
+
+    private long getBiggestRectangle(List<Pair<Integer, Integer>> input) {
         var len = input.size();
         long result = 0;
         for( int i =0;i<len;i++){
@@ -27,12 +30,11 @@ public class Day09 {
         return result;
     }
 
-    private Optional<List<Pair<Integer, Integer>>> getInput() {
+    private List<Pair<Integer, Integer>> getInput() {
         try(Stream<String> lines = Files.lines(Path.of("src/days/day09/day09.txt"))){
-            var list = lines.map(this::getPairFromList).toList();
-            return Optional.of(list);
+           return lines.map(this::getPairFromList).toList();
         } catch (IOException e) {
-            return Optional.empty();
+            return new ArrayList<>();
         }
     }
 
