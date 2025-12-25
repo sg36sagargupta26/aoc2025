@@ -11,11 +11,13 @@ public class Day11 {
     public long problemA(){
         Map<String,GraphNodes> graph = createGraph();
         Map<String,Long> memo = new HashMap<>();
-        return bfs("you",graph,memo);
+        String inputString = "you";
+        String outputString = "out";
+        return bfs(inputString,graph,memo,outputString);
     }
 
-    private long bfs(String inputString, Map<String, GraphNodes> graph, Map<String, Long> memo) {
-        if("out".equals(inputString)){
+    private long bfs(String inputString, Map<String, GraphNodes> graph, Map<String, Long> memo, String outputString) {
+        if(outputString.equals(inputString)){
             return 1;
         }
         if(memo.containsKey(inputString)){
@@ -27,7 +29,7 @@ public class Day11 {
         var node = graph.get(inputString);
         long numOfPaths =0 ;
         for(var children: node.getChildren()){
-            numOfPaths += bfs(children.getName(),graph,memo);
+            numOfPaths += bfs(children.getName(),graph,memo, outputString);
         }
         memo.put(inputString,numOfPaths);
         return numOfPaths;
