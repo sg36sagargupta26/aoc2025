@@ -1,9 +1,10 @@
-import days.day09.Day09;
+import days.day10.Day10;
 
 void main() {
-    Day09 day09 = new Day09();
+    Day10 day10 = new Day10();
     Instant start = Instant.now();
-    IO.println("result -> " + day09.day09b());
+    IO.println("result -> " + day10.problemA());
+    IO.println("result -> " + day10.problemB());
     Instant end = Instant.now();
     Duration duration = Duration.between(start,end);
     IO.println("time -> " +duration.toMillis());
