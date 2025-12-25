@@ -16,6 +16,10 @@ public class Day11 {
         return bfs(inputString,graph,memo,outputString);
     }
 
+    public long problemB(){
+        return bfs("svr",createGraph(),new HashMap<>(),"out",new HashSet<>());
+    }
+
     private long bfs(String inputString, Map<String, GraphNodes> graph, Map<String, Long> memo, String outputString) {
         if(outputString.equals(inputString)){
             return 1;
@@ -32,6 +36,31 @@ public class Day11 {
             numOfPaths += bfs(children.getName(),graph,memo, outputString);
         }
         memo.put(inputString,numOfPaths);
+        return numOfPaths;
+    }
+
+    private long bfs(String inputString, Map<String, GraphNodes> graph, Map<MemoKey, Long> memo, String outputString,Set<String> nodesVisited) {
+        if(outputString.equals(inputString)){
+            if(nodesVisited.contains("dac") && nodesVisited.contains("fft")){
+                return 1;
+            }
+            return 0;
+        }
+        var memoKey = new MemoKey(inputString,nodesVisited.contains("dac"),nodesVisited.contains("fft"));
+        if(memo.containsKey(memoKey) ){
+            return memo.get(memoKey);
+        }
+        if(!graph.containsKey(inputString)){
+            return 0;
+        }
+        var node = graph.get(inputString);
+        long numOfPaths =0 ;
+        for(var children: node.getChildren()){
+            nodesVisited.add(children.getName());
+            numOfPaths += bfs(children.getName(),graph,memo, outputString,nodesVisited);
+            nodesVisited.remove(children.getName());
+        }
+        memo.put(memoKey,numOfPaths);
         return numOfPaths;
     }
 
